@@ -10,6 +10,8 @@
   <body>
     <h1>Welcome to the OneTap Google SignIn Demo Page</h1>
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <div id="content"></div>
+    <button onclick="signOut()">Sign Out</button>
 </body>
 
 <script>
@@ -18,6 +20,15 @@
 
         console.log('User is '+ JSON.stringify(googleUser.getBasicProfile()));
 
+        document.querySelector('#content').innerText=googleUser.getBasicProfile().getName();
+
+    }
+
+    function signOut()
+    {
+        gapi.auth2.getAuthInstance().signOut().then(function(){
+            console.log('User Signed Out!!');
+        })
     }
 </script>
 
